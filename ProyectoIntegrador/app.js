@@ -30,6 +30,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter); 
 app.use('/login', usersRouter);
 app.use('/product', productRouter);
+app.use('/productAdd', productRouter);
 app.use('/profile', usersRouter);
 app.use('/profileEdit', usersRouter);
 app.use('/register', usersRouter);

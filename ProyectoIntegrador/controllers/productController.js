@@ -3,7 +3,7 @@ const productController ={
         res.render('product');
         },
     productAdd: function(req, res, next) {
-        res.render('profile-add');
+        res.render('product-add');
         }
     
 
