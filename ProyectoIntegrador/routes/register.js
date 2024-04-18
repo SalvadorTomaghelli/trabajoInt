@@ -1,8 +1,10 @@
-var express = require('express');
-var router = express.Router();
-let registerController = require('../controllers/registerController')
+// var express = require('express');
+// var router = express.Router();
+// let registerController = require('../controllers/registerController')
 
-router.get('/', registerController.register);
+// router.get('/', registerController.register);
 
 
-module.exports = router;
+// module.exports = router;
+
+// BORRAR
