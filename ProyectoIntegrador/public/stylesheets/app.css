@@ -205,6 +205,8 @@ hr {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  background-color: dimgray;
+
 }
 
 .product-box_data h2 {
@@ -336,6 +338,7 @@ hr {
   padding: 15px 15px 15px 40px;
   font-size: 1.8em;
   line-height: 1.5;
+  color: black;
 }
 
 .product-detail-price {
@@ -432,6 +435,8 @@ hr {
 }
 .comments .user{
   font-size: 1.7em;
+  color: black;
+
 }
 
 /*====== Formularios ======*/
