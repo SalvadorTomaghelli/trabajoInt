@@ -88,6 +88,7 @@ hr {
   font-size: 1.5em;
   margin-top: 20px;
   text-align: center;
+  font-family: "Montserrat", sans-serif;
 }
 
 .search-form {
@@ -157,6 +158,7 @@ hr {
   display: block;
   padding: 5px 0;
   border-bottom: solid 1px var(--gray);
+  font-family: "Raleway", sans-serif;
 }
 
 
@@ -181,6 +183,7 @@ hr {
   font-size: 2.4em;
   font-weight: 400;
   color: var(--gray);
+  font-family: "Montserrat", sans-serif;
 }
 
 .product-box {
@@ -215,6 +218,7 @@ hr {
   font-weight: 300;
   margin: 0;
   color:white;
+  font-family: "Montserrat", sans-serif;
 }
 
 .product-box_data span {
@@ -263,7 +267,8 @@ hr {
 .product-box:hover p {
   height: 36px;
   margin-top: 15px;
-  color: white
+  color: white;
+  font-family: "Montserrat", sans-serif; 
 }
 
 .product-box:hover i {
@@ -291,12 +296,14 @@ hr {
   color: var(--gray);
   font-size: 2.4em;
   font-weight: 400;
+  font-family: "Montserrat", sans-serif
 }
 
 .footer-data p {
   color: var(--gray);
   font-size: 1.5em;
   font-weight: 300;
+  font-family: "Montserrat", sans-serif;
 }
 
 .sub-footer {
@@ -341,6 +348,7 @@ hr {
   font-size: 1.8em;
   line-height: 1.5;
   color: white;
+  font-family: "Montserrat", sans-serif;
 }
 
 .product-detail-price {
@@ -438,7 +446,7 @@ hr {
 .comments .user{
   font-size: 1.7em;
   color: white;
-
+  font-family: "Montserrat", sans-serif;
 }
 
 /*====== Formularios ======*/
@@ -486,6 +494,7 @@ textarea.form-input {
   font-size: 25px;
   margin-bottom: 10px;
   color: white;
+  font-family: "Montserrat", sans-serif;
 }
 
 .btn{
