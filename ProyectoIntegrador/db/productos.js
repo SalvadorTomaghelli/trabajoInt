@@ -71,7 +71,24 @@ let productos= [{
         textoComentario: ["Excelente auto! Me encanto el disenio!", "Me parecio muy elevado el precio. Igualmente muy lindo auto.", "Gran auto y muy buen motor.", "Esta disponible el color blanco?" , "Se puede aplicar mejoras al motor?" ] ,
         imagenPerfil: '/public/users/usuario1.jpg'
     }
-}
+},{
+
+    nombre: "Chevrolet",
+    descripcion:"El Chevrolet Corvette es un automóvil deportivo creado en 1953.", 
+    imagenProducto:"/public/images/products/auto9.jpg",
+    comentarios: {
+        nombreUsuario: ["Usuario1:" , "Usuario2:" , "Usuario3:" , "Usuario4:" , "Usuario5:"] , 
+        textoComentario: ["Excelente auto! Me encanto el disenio!", "Me parecio muy elevado el precio. Igualmente muy lindo auto.", "Gran auto y muy buen motor.", "Esta disponible el color blanco?" , "Se puede aplicar mejoras al motor?" ] ,
+        imagenPerfil: '/public/users/usuario1.jpg'} 
+},{
+    nombre: "Maserati",
+    descripcion:"Maserati es un fabricante italiano de automóviles de lujo fundado en 1914. ", 
+    imagenProducto:"/public/images/products/auto10.jpg",
+    comentarios: {
+        nombreUsuario: ["Usuario1:" , "Usuario2:" , "Usuario3:" , "Usuario4:" , "Usuario5:"] , 
+        textoComentario: ["Excelente auto! Me encanto el disenio!", "Me parecio muy elevado el precio. Igualmente muy lindo auto.", "Gran auto y muy buen motor.", "Esta disponible el color blanco?" , "Se puede aplicar mejoras al motor?" ] ,
+        imagenPerfil: '/public/users/usuario1.jpg'} 
+    }
 ]
 
 module.exports= productos
