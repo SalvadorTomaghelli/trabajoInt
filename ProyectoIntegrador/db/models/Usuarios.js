@@ -12,6 +12,9 @@ module.exports= function(sequelize,database){
         contrasenia:{
             type: dataTypes.STRING
         },
+        DNI:{
+            type:dataTypes.INTEGER
+        },
         fecha:{
             type:dataTypes.DATE
         },
@@ -26,6 +29,10 @@ module.exports= function(sequelize,database){
             type: dataTypes.DATE,
             allowNull: true,
         },
+        delete_at:{
+            type: dataTypes.DATE,
+            allowNull: true,
+        }
 
     }
     let config={
