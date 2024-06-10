@@ -2,12 +2,12 @@ module.exports = function(sequelize,database){
     let alias = 'Productos'
     let cols = {
         id:{
-            type: DataTypes.INTEGER,
+            type: dataTypes.INTEGER,
             primaryKey: true, 
             autoIncrement: true
         },
         id_usuario:{
-            type: DataTypes.INTEGER
+            type: dataTypes.INTEGER
         },
         nombre_foto:{
             type: dataTypes.STRING
@@ -34,10 +34,11 @@ module.exports = function(sequelize,database){
     }
     let config={
         tablename: "Productos",
-        timestamps: false,
+        timestamps: true,
         underscored: false
     }
     const Productos= sequelize.define(alias,cols,config);
+    
 
     return Productos
 }
