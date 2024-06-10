@@ -41,3 +41,4 @@ module.exports = function(sequelize,database){
 
     return Productos
 }
+
