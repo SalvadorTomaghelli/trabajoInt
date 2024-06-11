@@ -1,4 +1,4 @@
-module.exports = function(sequelize,database){
+module.exports = function(sequelize,dataTypes){
     let alias = 'Productos'
     let cols = {
         id:{
@@ -38,7 +38,17 @@ module.exports = function(sequelize,database){
         underscored: false
     }
     const Productos= sequelize.define(alias,cols,config);
-    
+    Productos.associate=function(models){
+        Productos.hasMany(models.Comentarios, {
+            as:'productos',
+            foreignKey:"id_productos"
+        }),
+        Productos.belongsTo(models.Usuarios,{
+            as:'Productos',
+            foreignKey:"id_producto"
+        })
+        
+    }
 
     return Productos
 }

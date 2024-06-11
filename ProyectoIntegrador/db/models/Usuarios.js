@@ -1,8 +1,8 @@
-module.exports= function(sequelize,database){
+module.exports= function(sequelize,dataTypes){
     let alias='Usuarios';
     let cols={
         id:{
-            type: DataTypes.INTEGER,
+            type: dataTypes.INTEGER,
             primaryKey: true, 
             autoIncrement: true
         },
@@ -19,7 +19,7 @@ module.exports= function(sequelize,database){
             type:dataTypes.DATE
         },
         foto_perfil:{
-            type:DataTypes.STRING
+            type:dataTypes.STRING
         },
         created_at : {
             type: dataTypes.DATE,

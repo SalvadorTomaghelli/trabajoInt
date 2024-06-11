@@ -1,19 +1,19 @@
-module.exports = function(sequelize,database){
+module.exports = function(sequelize,dataTypes){
     let alias = 'Comentarios';
     let cols = {
         id:{
-            type: DataTypes.INTEGER,
+            type: dataTypes.INTEGER,
             primaryKey: true, 
             autoIncrement: true 
         },
         id_usuario:{
-            type: DataTypes.INTEGER
+            type: dataTypes.INTEGER
         },
         id_producto:{
-            type: DataTypes.INTEGER
+            type: dataTypes.INTEGER
         },
         texto:{
-                type: dataTypes.STRING
+            type: dataTypes.STRING
         },
         createdAt:{
             type: dataTypes.DATE,
@@ -37,11 +37,11 @@ module.exports = function(sequelize,database){
 
     Comentarios.associate = function(models){
         Comentarios.belongsTo(models.Usuarios,{
-            as: 'comentario',
+            as: 'comentarios',
             foreignKey: "id_usuario",
         }),
        Comentarios.belongsTo(models.Productos,{
-            as: 'comentario',
+            as: 'Comentarios',
             foreignKey: 'id_producto',
             })
     }
