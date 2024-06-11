@@ -47,9 +47,5 @@ const usersController = {
     }
     }
 }
-// let registerController={
-    
-// }
-
 
 module.exports = usersController

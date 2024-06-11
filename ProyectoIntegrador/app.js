@@ -3,15 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session'); //Instalamos session.
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-// let loginRouter = require('./routes/login');
 let productRouter = require('./routes/product');
-// let profileRouter = require('./routes/profile');
-// let profileEditRouter = require('./routes/profileEdit');
-// let registerRouter = require('./routes/register');
-// let searchResultsRouter = require('./routes/searchResults');
+const db= require('./db/models')
 
 
 var app = express();
