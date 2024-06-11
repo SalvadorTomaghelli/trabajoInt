@@ -196,3 +196,27 @@ INSERT INTO Comentarios
 VALUES(DEFAULT, 10, 3, "Es un precio muy elevado para este auto.", DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO Comentarios
 VALUES(DEFAULT, 10, 2, "Muy buena  experiencia, lo recomiendo.", DEFAULT, DEFAULT, DEFAULT);
+
+-- --------------------
+
+ALTER TABLE usuarios
+ADD nombre VARCHAR(100) NOT NULL;
+UPDATE usuarios
+SET nombre = "usuario1"
+WHERE id = 1;
+
+UPDATE usuarios
+SET nombre = "usuario2"
+WHERE id = 2;
+
+UPDATE usuarios
+SET nombre = "usuario3"
+WHERE id = 3;
+
+UPDATE usuarios
+SET nombre = "usuario4"
+WHERE id = 4;
+
+UPDATE usuarios
+SET nombre = "usuario5"
+WHERE id = 5;
