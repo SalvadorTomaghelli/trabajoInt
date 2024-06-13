@@ -1,6 +1,7 @@
 const usuarios = require("../db/index")
 const db = require('../db/models');
 const { validationResult } = require("express-validator");
+const bcrypt = require('bcryptjs');
 const usersController = {
     login: function(req, res, next) {
       res.render('login')
@@ -20,25 +21,26 @@ const usersController = {
       res.render('users');
       },
     store: function(req,res,next){
-      if (!validationResult.isEmpty()){
-            return res.render("register",{
-            errors: validationResult.mapped(),
+      const errors = validationResult(req);
+      if (!errors){
+            return res.render("users",{
+            errors: errors.mapped(),
             oldData: req.body
             })
       }else{
         // Guardar un usuario en la db
-        const usuario = {
+        const usuarios = {
             nombre: req.body.user,
             email: req.body.email,
             contrasenia: bcrypt.hashSync(req.body.password, 10),
             fecha: req.body.fecha,
-            DNI: req.body.DNI,
+            dni: req.body.DNI,
             foto_perfil: req.body.profile,
         };
         //creamos el usuario
-        db.usuario
-            .create(usuario)
-            .then(function (usuario) {
+        db.Usuarios
+            .create(usuarios)
+            .then(function (user) {
                 return res.redirect("/login");
             })
             .catch(function (err) {

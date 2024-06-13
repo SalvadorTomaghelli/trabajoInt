@@ -1,6 +1,5 @@
 const { body } = require("express-validator")
 const db = require('../db/models'); //Requerimos la conexión a la base de datos y todos los modelos.
-const bcryptjs = require('bcryptjs')
 let registerValidations=[
     body("email")
         .notEmpty()
@@ -26,8 +25,7 @@ let registerValidations=[
         .withMessage('Debes completar tu contraseña')
         .isLength({ min: 4 })
         .withMessage('La contraseña debe tener al menos 4 caracteres')
-        //terminar el hashing
-        
+        //terminar el hashing   
 
 ]
 
