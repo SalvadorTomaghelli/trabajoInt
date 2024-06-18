@@ -24,8 +24,23 @@ let registerValidations=[
         .notEmpty()
         .withMessage('Debes completar tu contraseña')
         .isLength({ min: 4 })
-        .withMessage('La contraseña debe tener al menos 4 caracteres')
-        //terminar el hashing   
+        .withMessage('La contraseña debe tener al menos 4 caracteres'),
+
+
+        //terminar el hashing
+    body("DNI")
+        .custom(function(value,{req}){
+            return db.Usuarios.findOne({
+                where:{DNI: value},
+            })
+            .then(function(usuarios){
+                if(usuarios)
+                {
+                    throw new Error('Ya existe este DNI')
+                }
+            })
+        })
+
 
 ]
 

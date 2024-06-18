@@ -44,6 +44,9 @@
 					<div>
 						<label for="DNI">DNI:</label>
 						<input id="DNI" type="number" name="DNI" value="">
+						<% if (locals.errors && errors.DNI) { %>
+                            <div class="error-msg"><%= errors.DNI.msg %></div>
+                        <% } %>
 					</div>
 					<div>
 						<label for="profile">Foto de perfil:</label>

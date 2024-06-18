@@ -47,8 +47,28 @@ const usersController = {
             .catch(function (err) {
                 console.log("Error al guardar el usuario", err);
             });
-    }
-    }
-}
+     }
+    },
+    login2: function(req,res) {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()){
+        console.log("errors:", JSON.stringify(errors, null, 4))
+        return res.render("login",{
+          errors: errors.mapped(),
+          oldData: req.body
+        })
+      } else {
+        db.Usuarios.findOne({
+          where: [{email: req.body.email}]
+      })
+      .then( function ( user ) {
+        req.session.user = user;
+        return res.redirect('/');            
+            })
+            .catch( function(e) {
+              console.log(e)
+          })
+      }
+}}
 
 module.exports = usersController
