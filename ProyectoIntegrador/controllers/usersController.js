@@ -22,8 +22,9 @@ const usersController = {
       },
     store: function(req,res,next){
       const errors = validationResult(req);
-      if (!errors){
-            return res.render("users",{
+      if (!errors.isEmpty()){
+            console.log("errors:", JSON.stringify(errors, null, 4));
+            return res.render("register",{
             errors: errors.mapped(),
             oldData: req.body
             })

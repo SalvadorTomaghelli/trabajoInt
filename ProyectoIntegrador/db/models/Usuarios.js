@@ -32,7 +32,7 @@ module.exports= function(sequelize,dataTypes){
             type: dataTypes.DATE,
             allowNull: true,
         },
-        delete_at:{
+        deleted_at:{
             type: dataTypes.DATE,
             allowNull: true,
         }

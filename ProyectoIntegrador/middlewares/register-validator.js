@@ -7,8 +7,8 @@ let registerValidations=[
         .isEmail()
         .withMessage('Debes escribir un formato de correo valido')
         .custom(function(value,{req}){
-            return db.usuarios.findOne({
-                where:{email: req.body.email},
+            return db.Usuarios.findOne({
+                where:{email: value},
             })
             .then(function(usuarios){
                 if(usuarios)//si no hay usuario
