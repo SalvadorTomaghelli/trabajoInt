@@ -15,14 +15,20 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-				<form action="/users" method="GET">
+				<form action="/users/login" method="post">
 					<div>
 						<label for="user">Email:</label>
-						<input id="email" type="email" name="email" value="">
+						<input id="email" type="email" name="email" value="<%= locals.oldData && oldData.email ? oldData.email : null  %>">
+						<% if (locals.errors && errors.email) { %>
+                            <div class="error-msg"><%= errors.email.msg %></div>
+                        <% } %>
 					</div>
 					<div>
 						<label for="password">Contrasenia:</label>
 						<input id="password" type="password" name="password" value="">
+						<% if (locals.errors && errors.password) { %>
+                            <div class="error-msg"><%= errors.password.msg %></div>
+                        <% } %>
 					</div>
 					<div>
 						<label for="recordame">Recordame</label>
