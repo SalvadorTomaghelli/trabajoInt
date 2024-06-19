@@ -10,7 +10,7 @@ const loginValidation = [
         .isEmail()
         .withMessage("Debes escribir un formato de correo valido")
         .custom(function(value, {req}){
-            return db.Usarios.findOne({
+            return db.Usuarios.findOne({
                 where: {email:value}
             })
             .then(function(loguearUsuario){
@@ -29,10 +29,12 @@ const loginValidation = [
             })
             .then(function(Usuarios){
                 if(Usuarios){
-                    const password = Usuarios.password;
+                    const password = Usuarios.contrasenia;
                     const passwordOk= bcryptjs.compareSync(value,password);
+                    console.log(passwordOk)
                     if(!passwordOk){
                         throw new Error("Contraseña incorrecta")
+                        
                     }                    
                 }
             })
