@@ -4,18 +4,30 @@ const { validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
 const usersController = {
     login: function(req, res, next) {
-      res.render('login')
+      if (req.session.user != undefined){
+        return res.redirect('/')
+      } else {
+      res.render('login');}
+
       },
     register: function(req, res, next) {
-      res.render('register');
+      if (req.session.user != undefined){
+        return res.redirect('/')
+      } else {
+      res.render('register');}
       },
     profile: function(req, res, next) {
-      res.render('profile', {
-        usuarios
-      });
+      if (req.session.user == undefined){
+        return res.redirect('/')
+      } else {
+      res.render('profile', {usuarios}
+      );}
       },
     profileEdit: function(req, res, next) {
-      res.render('profile-edit');
+      if (req.session.user == undefined){
+        return res.redirect('/')
+      } else {
+      res.render('profile-edit');}
       },
     users: function(req, res, next) {
       res.render('users');
@@ -63,7 +75,7 @@ const usersController = {
       })
       .then( function ( user ) {
         req.session.user = user;
-        return res.redirect('/');            
+        return res.redirect('/users');            
             })
             .catch( function(e) {
               console.log(e)
