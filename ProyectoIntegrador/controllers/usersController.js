@@ -72,6 +72,19 @@ const usersController = {
               console.log(e)
           })
       }
-}}
+    },
+    logout:function(req,res){
+      //Destruir la sessión
+      req.session.destroy();
+
+      //Destruir la coockie
+       res.clearCookie('usuarioId');
+      
+      //redireccionar a hone
+      return res.redirect('/')
+  }
+    
+
+}
 
 module.exports = usersController

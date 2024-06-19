@@ -13,5 +13,6 @@ router.get('/profileEdit', usersController.profileEdit);
 //Rutas Post, Hay que icluir las validaciones entre el Path y el controller
 router.post('/register', registerValidations, usersController.store)
 router.post('/login', loginValidations, usersController.login2);
+router.post('/logout', usersController.logout);
 
 module.exports = router;
