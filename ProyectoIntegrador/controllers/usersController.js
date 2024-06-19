@@ -61,9 +61,12 @@ const usersController = {
         db.Usuarios.findOne({
           where: [{email: req.body.email}]
       })
-      .then( function ( user ) {
-        req.session.user = user;
-        return res.redirect('/');            
+      .then( function ( usuario ) {
+        req.session.user = usuario;
+        if(req.body.recordame != undefined){
+          res.cookie('usuarioId', usuario.id, { maxAge: 1000 * 60 * 100})
+      }
+        return res.redirect('/users');            
             })
             .catch( function(e) {
               console.log(e)

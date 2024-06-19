@@ -28,6 +28,31 @@ app.use(session(
     saveUninitialized: true }
 ));
 
+app.use(function(req, res, next){
+  if(req.session.usuario != undefined){
+    res.locals.usuario = req.session.usuario;
+    return next();
+  } 
+  return next();  
+})
+
+app.use(function(req, res, next){
+  if(req.cookies.usuarioId != undefined && req.session.usuario == undefined){
+    let idDeLaCookie = req.cookies.usuarioId;
+    console.log(idDeLaCookie)
+    db.Usuarios.findByPk(idDeLaCookie)
+    .then( usuario => {
+      req.session.usuario = usuario; 
+      res.locals.usuario = usuario; 
+      return next();
+    })
+    .catch( e => {console.log(e)})
+  } else {
+    return next();
+  }
+
+})
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter); 
