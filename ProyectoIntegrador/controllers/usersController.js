@@ -2,6 +2,7 @@ const usuarios = require("../db/index")
 const db = require('../db/models');
 const { validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
+
 const usersController = {
     login: function(req, res, next) {
       if (req.session.user != undefined){
@@ -15,13 +16,6 @@ const usersController = {
         return res.redirect('/')
       } else {
       res.render('register');}
-      },
-    profile: function(req, res, next) {
-      if (req.session.user == undefined){
-        return res.redirect('/')
-      } else {
-      res.render('profile', {usuarios}
-      );}
       },
     profileEdit: function(req, res, next) {
       if (req.session.user == undefined){
@@ -86,17 +80,36 @@ const usersController = {
       }
     },
     logout:function(req,res){
-      //Destruir la sessión
+      //Destruir la sesión
       req.session.destroy();
 
-      //Destruir la coockie
+      //Destruir la cookie
        res.clearCookie('usuarioId');
       
-      //redireccionar a hone
+      //redireccionar a home
       return res.redirect('/')
-  }
-    
+    },
+    profile: function(req,res) {
+      if (req.session.user == undefined){
+        return res.redirect('/')
+      } else {
+      id = req.session.user.id
+      console.log(id)
+      db.Usuarios.findByPk(id,{
+        include: [
+            {association: 'Productos'}
+        ] 
+      })
+        .then(data =>{
+          console.log("Usuario por id: ",JSON.stringify(data,null,4))
+          return res.render('profile', { usuario: data})
 
-}
+        })
+        .catch(e =>{
+          console.log(e)
+        })
+      }}
+    }
+    
 
 module.exports = usersController

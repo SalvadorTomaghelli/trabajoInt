@@ -54,8 +54,6 @@ module.exports= function(sequelize,dataTypes){
             foreignKey:"id_usuario"
         })
         
-        
-        
     }
 
     return Usuarios
