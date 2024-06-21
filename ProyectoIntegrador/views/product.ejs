@@ -14,7 +14,7 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title">Nombre del producto</h2> 
+			<h2 class="products-title"><%= product.nombre_producto %></h2> 
 			<p class="product-detail-description">
 				<a href="/product/productAdd">Editar</a>
 			</p>
@@ -22,55 +22,25 @@
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="images/products/auto5.jpg" alt="" class="product-detail-img">
-					<p class="product-detail-description">
-						BMW M2, no es un auto, mas bien una experiencia. De 0 a 100km/h en 5.7 segundos, este vehiculo no deja nada que desear 
-						en el departamento de velocidad. Para seguir sumando, su espacioso interior lo hace uno de los autos mas comodos en la industria.</p>
+					<img src="/images/products/<%= product.nombre_foto %>" alt="" class="product-detail-img">
+					<p class="product-detail-description"> <%= product.descripcion %></p>
 				</article>
-				<div class="col-12 col-lg-4">
-					<section class="comments">
-						<article>
-							<img src="<%=usuarios[0].foto_de_perfil%>" alt="foto">
-							<div class="data">
-								<p class="user">
-								<strong> <a href="/users/profile"> </a> <%= usuarios[0].usuario   %>:</strong>
-								 <%= productos[0].comentarios.textoComentario[0] %>   </p>
-							</div>
-						</article>
-						<article>
-							<img src="<%=usuarios[1].foto_de_perfil%>" alt="foto">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/users/profile"><%=usuarios[1].usuario%>: </a> </strong>
-									<%=productos[0].comentarios.textoComentario[1]%></p>
-							</div>
-						</article>
-						<article>
-							<img src="<%=usuarios[2].foto_de_perfil%>" alt="foto">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/users/profile"><%=usuarios[2].usuario%>:</a> </strong>
-									<%=productos[0].comentarios.textoComentario[2]%>
-									</p>
-							</div>
-						</article>
-						<article>
-							<img src="<%=usuarios[3].foto_de_perfil%>" alt="foto">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/users/profile"><%=usuarios[3].usuario%>: </a> </strong>
-									<%=productos[0].comentarios.textoComentario[3]%></p>
-							</div>
-						</article>
-						<article>
-							<img src="<%=usuarios[4].foto_de_perfil%>" alt="foto">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/users/profile"><%=usuarios[4].usuario%>:</a> </strong>
-									<%=productos[0].comentarios.textoComentario[4]%></p>
-							</div>
-						</article>
 
+				<div class="col-12 col-lg-4">
+					<% for( let i = 0; i < product.Comentarios.length; i++ ) { %>
+
+						<section class="comments">
+							<article>
+								<img src="/public/images/users/usuario1.jpg" alt="foto">
+								<div class="data">
+									<p class="user">
+									<strong> <a href="/users/profile"> </a><%=product.Comentarios[i].Usuarios.nombre %> </strong>
+									 <%= product.Comentarios[i].texto %>   </p>
+								</div>
+							</article>
+					
+					<% } %>
+					
 					</section>
 					<form class="form" action="" method="POST">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
