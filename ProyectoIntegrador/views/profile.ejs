@@ -15,7 +15,7 @@
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title"> <%= locals.usuario.nombre %>
+					<h1 class="main-title"> <%= usuario.nombre %>
 						<a href="/users/profileEdit">
 							<i class="fas fa-cog"></i>
 						</a>
@@ -27,7 +27,7 @@
 							<li>
 								<% let ctdProductos = 0  %>
 								<% for( let i = 0; i < usuario.Productos.length; i++ ) { %>
-									<% if (usuario.Productos[i].id_usuario == locals.usuario.id) { %>
+									<% if (usuario.Productos[i].id_usuario) { %>
 										<% ctdProductos++ %>
 										<% } %>
 								<% } %>

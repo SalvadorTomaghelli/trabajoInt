@@ -93,7 +93,7 @@ const usersController = {
       if (req.session.user == undefined){
         return res.redirect('/')
       } else {
-      id = req.session.user.id
+      let id = req.session.user.id
       console.log(id)
       db.Usuarios.findByPk(id,{
         include: [

@@ -16,6 +16,7 @@ const productController ={
         },
     products: function (req,res) {
         let id = req.params.id
+        console.log("el id es: " + id)
         db.Productos.findByPk(id, {
             include: [
                 {association: "Usuarios"},
@@ -27,6 +28,9 @@ const productController ={
             console.log("producto por id: ", JSON.stringify(data,null, 4))
             return res.render('product',{product:data})
         })
+        .catch(e =>{
+            console.log(e)
+          })
     }
     
 

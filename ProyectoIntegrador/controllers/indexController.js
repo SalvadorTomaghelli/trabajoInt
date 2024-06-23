@@ -3,7 +3,23 @@ const db = require('../db/models');
 const op = db.Sequelize.Op;
 const indexController ={
     index: function(req, res, next) {
-        res.render('index', {productos} );
+        db.Productos.findAll({
+            order: [
+                ['created_at', 'DESC']
+            ],
+            include: [
+                {association: "Usuarios"},
+                {association: "Comentarios",
+                    include: [{association: 'Usuarios'}]}   
+            ]
+        })
+            .then( data => {
+                return res.render('index', { autos: data })
+            })
+            .catch(error =>{
+                console.log(error);
+            })
+        // res.render('index', {productos} );
         },
     searchResults: function(req, res, next) {
         let infoABuscar = req.query.search; //obtengo la info de la querystring.
