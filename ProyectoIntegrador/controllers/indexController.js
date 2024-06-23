@@ -8,19 +8,17 @@ const indexController ={
     searchResults: function(req, res, next) {
         let infoABuscar = req.query.search; //obtengo la info de la querystring.
         console.log(infoABuscar)
+        let filtramos={
+            where:{
+                [op.or]:[
+                    {nombre_producto:{[op.like]:'%'+ infoABuscar + '%'}},
+                    {descripcion:{[op.like]:'%' + infoABuscar + "%"}}
 
-        db.Productos.findAll({
-            //SELECT * FROM movies
-            //WHERE title LIKE "%potter%"
-            where: [
-                { nombre_producto: { [op.like]: '%' + infoABuscar + '%' }, 
-            order:[
-              ['created_at','DESC']
-            ]
+                ]
+            },
+            order:[['created_at', 'DESC']]
         }
-        
-            ]
-        })
+        db.Productos.findAll(filtramos)
             .then(data => {
                 console.log(data)
                 return res.render('search-results', { autos: data });
