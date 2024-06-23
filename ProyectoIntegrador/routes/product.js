@@ -6,5 +6,5 @@ router.get('/', productController.product);
 router.get('/productAdd', productController.productAdd);
 router.get('/:id?', productController.products);
 
-router.post('/profile', productAddValidator, productController.storeProduct );
+router.post('/productAdd', productAddValidator, productController.storeProduct );
 module.exports = router;
