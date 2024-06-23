@@ -20,18 +20,27 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-				<form action="/searchResults" method="GET">
+				<form action="/profile" method="POST">
 					<div>
 						<label for="image">Imagen:</label>
-						<input id="image" type="file" name="image" value="">
+						<input id="image" type="file" name="image" value="<%= locals.oldData && oldData.image ? oldData.image : null  %>">
+						<% if (locals.errors && errors.image) { %>
+                            <div class="error-msg"><%= errors.image.msg %></div>
+                        <% } %>
 					</div>
 					<div>
 						<label for="producto">Nombre del producto:</label>
-						<input id="producto" type="text" name="producto" value="">
+						<input id="producto" type="text" name="producto" value="<%= locals.oldData && oldData.producto ? oldData.producto : null  %>">
+						<% if (locals.errors && errors.producto) { %>
+                            <div class="error-msg"><%= errors.producto.msg %></div>
+                        <% } %>
 					</div>
 					<div>
 						<label for="descripcion">Descripcion:</label>
-						<input id="descripcion" type="text" name="descripcion" value="">
+						<input id="descripcion" type="text" name="descripcion" value="<%= locals.oldData && oldData.descripcion ? oldData.descripcion : null  %>">
+						<% if (locals.errors && errors.descripcion) { %>
+                            <div class="error-msg"><%= errors.descripcion.msg %></div>
+                        <% } %>
 					</div>
 					<div>
 						<button type="submit">Enviar</button>

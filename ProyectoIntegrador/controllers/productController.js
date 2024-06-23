@@ -1,7 +1,7 @@
 const usuarios = require("../db/index")
 const productos = require('../db/productos')
 const db = require('../db/models');
-
+const { productAddValidator } = require("express-validator");
 
 
 const productController ={
@@ -12,8 +12,12 @@ const productController ={
         });
         },
     productAdd: function(req, res, next) {
-        res.render('product-add');
+        if (req.session.user == undefined){
+            return res.redirect('/')
+          } else {
+          res.render('product-add');}
         },
+
     products: function (req,res) {
         let id = req.params.id
         console.log("el id es: " + id)
@@ -31,6 +35,33 @@ const productController ={
         .catch(e =>{
             console.log(e)
           })
+    },
+    storeProduct:function(req,res,next){
+        const errors = productAddValidator(req);
+      if (!errors.isEmpty()){
+            console.log("errors:", JSON.stringify(errors, null, 4));
+            return res.render("profile",{
+            errors: errors.mapped(),
+            oldData: req.body
+            })
+      }else{
+        // Guardar un Producto en la db
+        const producto = {
+            nombre_foto: req.body.image,
+            nombre_producto: req.body.producto,
+            descripcion:req.body.descripcion,
+            id_usuario: req.session.user.id
+        };
+        //creamos el usuario
+        db.Productos
+            .create(producto)
+            .then(function (user) {
+                return res.redirect("profile");
+            })
+            .catch(function (err) {
+                console.log("Error al guardar el usuario", err);
+            });
+     }
     }
     
 
