@@ -44,7 +44,7 @@ const productController ={
             errors: errors.mapped(),
             oldData: req.body
             })
-      }else{
+        }else{
         // Guardar un Producto en la db
         const producto = {
             nombre_foto: req.body.image,
@@ -52,7 +52,7 @@ const productController ={
             descripcion:req.body.descripcion,
             id_usuario: req.session.user.id
         };
-        //creamos el usuario
+        //creamos el producto
         db.Productos
             .create(producto)
             .then(function (user) {
