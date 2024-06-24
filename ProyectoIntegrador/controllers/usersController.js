@@ -96,9 +96,15 @@ const usersController = {
       let id = req.session.user.id
       console.log(id)
       db.Usuarios.findByPk(id,{
+        
         include: [
-            {association: 'Productos'}
-        ] 
+            {association: 'Productos',
+            order: [
+              ['created_at', 'DESC']  
+            ]}
+
+        ],
+        
       })
         .then(data =>{
           console.log("Usuario por id: ",JSON.stringify(data,null,4))
