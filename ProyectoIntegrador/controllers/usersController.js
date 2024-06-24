@@ -100,7 +100,7 @@ const usersController = {
         ] 
       })
         .then(data =>{
-          console.log("Usuario por id: ",JSON.stringify(data,null,4))
+          // console.log("Usuario por id: ",JSON.stringify(data,null,4))
           return res.render('profile', { usuario: data})
 
         })
@@ -108,7 +108,7 @@ const usersController = {
           console.log(e)
         })
       }},
-      
+
       update: function (req,res) {
       const oldData = req.session.user
       const errors = validationResult(req);
@@ -120,8 +120,10 @@ const usersController = {
 
           })
       }else{
-        const id = req.session.id
+        const id = req.session.user.id
         const usuario = req.body
+        console.log('este es el body:', req.body)
+        console.log('este es el id:', id)
         db.Usuarios.update(usuario,{
           where:{id : id
           }
