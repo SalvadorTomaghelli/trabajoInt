@@ -1,7 +1,7 @@
 const usuarios = require("../db/index")
 const productos = require('../db/productos')
 const db = require('../db/models');
-const { productAddValidator } = require("express-validator");
+const { validationResult } = require("express-validator");
 
 
 const productController ={
@@ -37,10 +37,10 @@ const productController ={
           })
     },
     storeProduct:function(req,res,next){
-        const errors = productAddValidator(req);
+        const errors = validationResult(req);
       if (!errors.isEmpty()){
             console.log("errors:", JSON.stringify(errors, null, 4));
-            return res.render("profile",{
+            return res.render("product-add",{
             errors: errors.mapped(),
             oldData: req.body
             })
@@ -56,7 +56,7 @@ const productController ={
         db.Productos
             .create(producto)
             .then(function (user) {
-                return res.redirect("profile");
+                return res.redirect("/users/profile");
             })
             .catch(function (err) {
                 console.log("Error al guardar el usuario", err);
