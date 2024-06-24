@@ -1,15 +1,10 @@
-const usuarios = require("../db/index")
-const productos = require('../db/productos')
 const db = require('../db/models');
 const { validationResult } = require("express-validator");
 
 
 const productController ={
     product: function(req, res, next) {
-        res.render('product', {
-            usuarios ,
-            productos
-        });
+        res.render('product');
         },
     productAdd: function(req, res, next) {
         if (req.session.user == undefined){
