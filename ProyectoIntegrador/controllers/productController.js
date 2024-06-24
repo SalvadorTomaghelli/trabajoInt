@@ -1,15 +1,10 @@
-const usuarios = require("../db/index")
-const productos = require('../db/productos')
 const db = require('../db/models');
 const { validationResult } = require("express-validator");
 
 
 const productController ={
     product: function(req, res, next) {
-        res.render('product', {
-            usuarios ,
-            productos
-        });
+        res.render('product');
         },
     productAdd: function(req, res, next) {
         if (req.session.user == undefined){
@@ -44,7 +39,7 @@ const productController ={
             errors: errors.mapped(),
             oldData: req.body
             })
-      }else{
+        }else{
         // Guardar un Producto en la db
         const producto = {
             nombre_foto: req.body.image,
@@ -52,6 +47,7 @@ const productController ={
             descripcion:req.body.descripcion,
             id_usuario: req.session.user.id
         };
+        //creamos el producto
         db.Productos
             .create(producto)
             .then(function (user) {
