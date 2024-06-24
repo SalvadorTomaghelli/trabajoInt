@@ -30,12 +30,20 @@ const indexController ={
                     {nombre_producto:{[op.like]:'%'+ infoABuscar + '%'}},
                     {descripcion:{[op.like]:'%' + infoABuscar + "%"}}
 
-                ]
+                ],
+                
             },
-            order:[['created_at', 'DESC']]
+            order:[['created_at', 'DESC']],
+            include: [
+                {association: "Usuarios"},
+                {association: "Comentarios",
+                    include: [{association: 'Usuarios'}]}   
+            ]
+            
         }
         db.Productos.findAll(filtramos)
             .then(data => {
+                console.log("hola hoala: ", JSON.stringify(data,null, 4))
                 console.log(data)
                 return res.render('search-results', { autos: data });
                 
