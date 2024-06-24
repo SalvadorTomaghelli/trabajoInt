@@ -42,10 +42,19 @@
 					<% } %>
 					
 					</section>
-					<form class="form" action="" method="POST">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+					<% if(locals.usuario == undefined){ %>
+						<p class="user">Debes estar logueado para comentar</p>
+					<% }else{ %>
+						<form class="form" action="/product/<%= product.id %>" method="POST">
+						<input class="form-input" type="text" name = "comentario" value="<%= locals.oldData && oldData.comentario ? oldData.comentario : null  %>" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+						<% if (locals.errors && errors.comentario) { %>
+                            <div class="user"><%= errors.comentario.msg %></div>
+                        <% } %>
 					</form>
+					<% } %>
+				
+					
 					<hr>
 				</div>
 			</div>

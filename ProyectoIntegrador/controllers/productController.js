@@ -20,8 +20,14 @@ const productController ={
             include: [
                 {association: "Usuarios"},
                 {association: "Comentarios",
-                    include: [{association: 'Usuarios'}]}   
-            ]
+                order: [
+                    ['created_at', 'DESC']
+                ],
+                    include: [{association: 'Usuarios'}]
+                    
+                }   
+            ],
+            
         })
         .then(data =>{
             console.log("producto por id: ", JSON.stringify(data,null, 4))
@@ -57,6 +63,45 @@ const productController ={
                 console.log("Error al guardar el usuario", err);
             });
      }
+    },
+    comentarioStore: function(req, res, next){
+        const errors = validationResult(req)
+        let id = req.params.id
+        db.Productos.findByPk(id, {
+            include: [
+                {association: "Usuarios"},
+                {association: "Comentarios",
+                    include: [{association: 'Usuarios'}]}   
+            ]
+        })
+        .then(data=>{
+            if (!errors.isEmpty()){
+            console.log("errors:", JSON.stringify(errors, null, 4));
+            return res.render("product", {
+            errors: errors.mapped(),
+            oldData: req.body,
+            product: data
+            })
+        }else{                
+            // Guardar un Producto en la db
+                const comentario = {
+                    texto: req.body.comentario,
+                    id_producto: req.params.id,
+                    id_usuario: req.session.user.id
+                };
+                //creamos el producto
+                db.Comentarios
+                    .create(comentario)
+                    .then(function (user) {
+                        return res.redirect(`/product/${id}`);
+                    })
+                    .catch(function (err) {
+                        console.log("Error al guardar el comentario", err);
+                    });
+             
+        }
+        })
+        
     }
     
 
