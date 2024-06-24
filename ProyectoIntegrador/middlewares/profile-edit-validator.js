@@ -22,10 +22,10 @@ let profileEditValidator=[
                 }
             })
         }}),
-    body('user')
+    body('nombre')
         .notEmpty()
         .withMessage('Debes completar tu nombre de usuario'),
-    body("password")
+    body("contrasenia")
         .notEmpty()
         .withMessage('Debes completar tu contraseña')
         .isLength({ min: 4 })
