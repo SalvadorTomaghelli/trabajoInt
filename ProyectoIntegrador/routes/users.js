@@ -4,6 +4,7 @@ let usersController = require('../controllers/usersController')
 //Requerimos las validaciones de la carpeta Middlewares
 const registerValidations=require('../middlewares/register-validator')
 const loginValidations = require('../middlewares/login-validator')
+const profileEditValidator = require('../middlewares/profile-edit-validator')
 
 router.get('/', usersController.users);
 router.get('/login', usersController.login);
@@ -14,5 +15,6 @@ router.get('/profileEdit', usersController.profileEdit);
 router.post('/register', registerValidations, usersController.store)
 router.post('/login', loginValidations, usersController.login2);
 router.post('/logout', usersController.logout);
+router.post('/profileEdit',profileEditValidator, usersController.update)
 
 module.exports = router;

@@ -9,5 +9,4 @@ router.get('/:id', productController.products);
 
 router.post('/productAdd', productAddValidator, productController.storeProduct );
 router.post('/:id', comentarioValidator, productController.comentarioStore);
-
 module.exports = router;

@@ -1,4 +1,3 @@
-const usuarios = require("../db/index")
 const db = require('../db/models');
 const { validationResult } = require("express-validator");
 const bcrypt = require('bcryptjs');
@@ -19,7 +18,7 @@ const usersController = {
       },
     profileEdit: function(req, res, next) {
       if (req.session.user == undefined){
-        return res.redirect('/')
+        return res.redirect('/register')
       } else {
       res.render('profile-edit');}
       },
@@ -48,7 +47,7 @@ const usersController = {
         db.Usuarios
             .create(usuarios)
             .then(function (user) {
-                return res.redirect("/login");
+                return res.redirect("/");
             })
             .catch(function (err) {
                 console.log("Error al guardar el usuario", err);
@@ -72,7 +71,7 @@ const usersController = {
         if(req.body.recordame != undefined){
           res.cookie('usuarioId', usuario.id, { maxAge: 1000 * 60 * 100})
       }
-        return res.redirect('/users');            
+        return res.redirect('/');            
             })
             .catch( function(e) {
               console.log(e)
@@ -93,18 +92,12 @@ const usersController = {
       if (req.session.user == undefined){
         return res.redirect('/')
       } else {
-      let id = req.session.user.id
+      id = req.session.user.id
       console.log(id)
       db.Usuarios.findByPk(id,{
-        
         include: [
-            {association: 'Productos',
-            order: [
-              ['created_at', 'DESC']  
-            ]}
-
-        ],
-        
+            {association: 'Productos'}
+        ] 
       })
         .then(data =>{
           console.log("Usuario por id: ",JSON.stringify(data,null,4))
@@ -114,8 +107,33 @@ const usersController = {
         .catch(e =>{
           console.log(e)
         })
-      }}
+      }},
+      
+      update: function (req,res) {
+      const oldData = req.session.user
+      const errors = validationResult(req);
+      if (!errors.isEmpty()){
+          console.log("errors:", JSON.stringify(errors, null, 4));
+          return res.render("profile-edit",{
+          errors: errors.mapped(),
+          oldData
+
+          })
+      }else{
+        const id = req.session.id
+        const usuario = req.body
+        db.Usuarios.update(usuario,{
+          where:{id : id
+          }
+        })
+        .then(function(result) {
+          return res.redirect('/users/profile')
+        })
+        .catch(function (err) {
+            console.log(err)
+        })
+      }
     }
-    
+  }
 
 module.exports = usersController

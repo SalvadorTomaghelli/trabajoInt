@@ -11,10 +11,12 @@ let profileEditValidator=[
                 where:{email: value},
             })
             .then(function(usuarios){
-                if(usuarios)//si no hay usuario
+                console.log(usuarios)
+                if(usuarios && usuarios != req.session.user.email)//si no hay usuario
                 {
                     throw new Error('Ya existe este email')
-                }
+                } 
+                
             })
         }),
     body('user')
