@@ -116,7 +116,7 @@ const productController ={
           })
             .then(data =>{
               // console.log("Usuario por id: ",JSON.stringify(data,null,4))
-              return res.render('productEdit', { producto: data})
+              return res.render('product-edit', { producto: data})
     
             })
             .catch(e =>{
@@ -143,7 +143,7 @@ const productController ={
             }
           })
           .then(function(result) {
-            return res.redirect(`/product/${id}`)
+            return res.redirect(`/users/product/${id}`)
           })
           .catch(function (err) {
               console.log(err)
