@@ -102,7 +102,55 @@ const productController ={
         }
         })
         
-    }
+    },
+    productEdit:function(req,res,next){
+        if (req.session.user == undefined){
+            return res.redirect('/')
+          } else {
+          id = req.session.user.id
+          console.log(id)
+          db.Productos.findByPk(id,{
+            include: [
+                {association: 'Usuarios'}
+            ] 
+          })
+            .then(data =>{
+              // console.log("Usuario por id: ",JSON.stringify(data,null,4))
+              return res.render('productEdit', { producto: data})
+    
+            })
+            .catch(e =>{
+              console.log(e)
+            })
+          }
+    },
+    update: function (req,res) {
+        const oldData = req.session.user
+        const errors = validationResult(req);
+        if (!errors.isEmpty()){
+            console.log("errors:", JSON.stringify(errors, null, 4));
+            return res.render("product-edit",{
+            errors: errors.mapped(),
+            oldData
+            })
+        }else{
+          const id = req.session.user.id
+          const producto = req.body
+          console.log('este es el body:', req.body)
+          console.log('este es el id:', id)
+          db.Productos.update(producto,{
+            where:{id : id
+            }
+          })
+          .then(function(result) {
+            return res.redirect(`/product/${id}`)
+          })
+          .catch(function (err) {
+              console.log(err)
+          })
+        }
+      }
+
     
 
 }
