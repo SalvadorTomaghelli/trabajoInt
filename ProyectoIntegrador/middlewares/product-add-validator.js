@@ -1,10 +1,10 @@
 const { body } = require("express-validator")
 const db= require("../db/models")
 const productAddValidator=[
-    body('image')
+    body('nombre_foto')
         .notEmpty()
         .withMessage("Debes selecionar un archivo"),
-    body('producto')
+    body('nombre_producto')
         .notEmpty()
         .withMessage('Debes ingresa el nombre del producto'),
     body('descripcion')

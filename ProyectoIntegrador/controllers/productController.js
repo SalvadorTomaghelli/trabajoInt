@@ -107,16 +107,13 @@ const productController ={
         if (req.session.user == undefined){
             return res.redirect('/')
           } else {
-          id = req.session.user.id
-          console.log(id)
-          db.Productos.findByPk(id,{
-            include: [
-                {association: 'Usuarios'}
-            ] 
-          })
+          id = req.params.id
+         // console.log(id)
+          db.Productos.findByPk(id)
             .then(data =>{
+                console.log("data importante: ",JSON.stringify(data,null,4))
               // console.log("Usuario por id: ",JSON.stringify(data,null,4))
-              return res.render('product-edit', { producto: data})
+              return res.render('product-edit', { producto1: data})
     
             })
             .catch(e =>{
@@ -124,7 +121,7 @@ const productController ={
             })
           }
     },
-    update: function (req,res) {
+    update: function (req,res, next) {
         const oldData = req.session.user
         const errors = validationResult(req);
         if (!errors.isEmpty()){
@@ -134,7 +131,7 @@ const productController ={
             oldData
             })
         }else{
-          const id = req.session.user.id
+          const id = req.params.id
           const producto = req.body
           console.log('este es el body:', req.body)
           console.log('este es el id:', id)

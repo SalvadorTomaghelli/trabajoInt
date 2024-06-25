@@ -10,7 +10,7 @@
 			<%- include('./partials/headerDeslogueado') %>
 			<% } %>
 	<!-- /Header -->
-
+		<% console.log("El id que quiero es: ", producto1.id) %>
 	
 	<!-- Novedades -->
 	<div class="container products-wrapper">
@@ -20,17 +20,17 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-				<form action="/product/productEdit" method="POST">
+				<form action="/product/productEdit/<%= producto1.id %>" method="POST">
 					<div>
 						<label for="image">Imagen:</label>
-						<input id="image" type="file" name="image" value="<%= locals.oldData && oldData.image ? oldData.image : null  %>">
+						<input id="nombre_foto" type="file" name="nombre_foto" value="<%= locals.oldData && oldData.image ? oldData.image : null  %>">
 						<% if (locals.errors && errors.image) { %>
                             <div class="error-msg"><%= errors.image.msg %></div>
                         <% } %>
 					</div>
 					<div>
 						<label for="producto">Nombre del producto:</label>
-						<input id="producto" type="text" name="producto" value="<%= locals.oldData && oldData.producto ? oldData.producto : null  %>">
+						<input id="nombre_producto" type="text" name="nombre_producto" value="<%= locals.oldData && oldData.producto ? oldData.producto : null  %>">
 						<% if (locals.errors && errors.producto) { %>
                             <div class="error-msg"><%= errors.producto.msg %></div>
                         <% } %>
