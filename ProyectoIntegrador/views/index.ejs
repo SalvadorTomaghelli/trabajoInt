@@ -4,6 +4,7 @@
 <%- include('./partials/head') %>
 <body>
 	<!-- Header -->
+	<% console.log(locals.usuario)%>
 	<% if(locals.usuario){ %>
 		<%- include('./partials/headerLogueado') %>
 		<% } else{ %>

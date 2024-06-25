@@ -43,6 +43,7 @@ const usersController = {
             dni: req.body.DNI,
             foto_perfil: req.body.profile,
         };
+        req.session.user = usuarios;
         //creamos el usuario
         db.Usuarios
             .create(usuarios)
@@ -52,6 +53,7 @@ const usersController = {
             .catch(function (err) {
                 console.log("Error al guardar el usuario", err);
             });
+            
      }
     },
     login2: function(req,res) {
