@@ -62,6 +62,7 @@ app.use('/productAdd', productRouter);
 app.use('/profile', usersRouter);
 app.use('/profileEdit', usersRouter);
 app.use('/register', usersRouter);
+app.use('/productEdit', productRouter)
 // app.use('/searchResults', searchResultsRouter);
 
 
